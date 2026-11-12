@@ -48,6 +48,7 @@
             <text class="article-title-cn" wx:if="{{item.title_cn}}">{{item.title_cn}}</text>
             <view class="article-foot">
                 <text>{{item.word_count}} 词</text>
+                <text class="article-audio" wx:if="{{item.audio}}">🔊 可听</text>
             </view>
         </view>
     </block>

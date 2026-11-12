@@ -1,4 +1,4 @@
-// 文章详情：正文逐词展示，点词查释义（LLM），可加入生词本。
+// 文章详情：正文逐词展示，点词查释义（LLM），可加入生词本；支持听全文（内置朗读音频）。
 const { cloud, getDefaultModel } = require('../../utils/cloud');
 
 Page({
@@ -10,6 +10,7 @@ Page({
         showTranslation: false,
         wordPopup: null,
         savingWord: false,
+        playing: false,
     },
 
     onLoad(options) {
@@ -17,11 +18,22 @@ Page({
         this.loadArticle();
     },
 
+    onUnload() {
+        this.destroyAudio();
+    },
+
+    destroyAudio() {
+        if (this.audio) {
+            this.audio.destroy();
+            this.audio = null;
+        }
+    },
+
     async loadArticle() {
         this.setData({ viewState: 'loading' });
         const result = await cloud.database
             .from('articles')
-            .select('id, topic, level, title, title_cn, content, translation, word_count, created_at')
+            .select('id, topic, level, title, title_cn, content, translation, word_count, audio, created_at')
             .eq('id', this.data.id)
             .maybeSingle();
         if (result.error || !result.data) {
@@ -58,6 +70,32 @@ Page({
             }
         }
         return tokens;
+    },
+
+    // ---- 听全文 ----
+    toggleAudio() {
+        const article = this.data.article;
+        if (!article || !article.audio) {
+            wx.showToast({ title: '这篇文章暂无音频', icon: 'none' });
+            return;
+        }
+        if (this.data.playing) {
+            if (this.audio) {
+                this.audio.stop();
+            }
+            this.setData({ playing: false });
+            return;
+        }
+        this.destroyAudio();
+        this.audio = wx.createInnerAudioContext();
+        this.audio.src = '/' + article.audio;
+        this.audio.onEnded(() => this.setData({ playing: false }));
+        this.audio.onError(() => {
+            this.setData({ playing: false });
+            wx.showToast({ title: '音频播放失败', icon: 'none' });
+        });
+        this.audio.play();
+        this.setData({ playing: true });
     },
 
     async onWordTap(event) {

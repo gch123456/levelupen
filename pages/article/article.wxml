@@ -18,8 +18,13 @@
             </view>
             <text class="article-title">{{article.title}}</text>
             <text class="article-title-cn" wx:if="{{article.title_cn}}">{{article.title_cn}}</text>
-            <view class="translation-toggle" bindtap="toggleTranslation">
-                {{showTranslation ? '隐藏全文翻译' : '显示全文翻译'}}
+            <view class="article-actions">
+                <view class="action-chip {{article.audio ? '' : 'action-chip-off'}}" bindtap="toggleAudio">
+                    {{playing ? '⏸ 停止朗读' : '🔊 听全文'}}
+                </view>
+                <view class="action-chip" bindtap="toggleTranslation">
+                    {{showTranslation ? '隐藏翻译' : '显示翻译'}}
+                </view>
             </view>
             <view class="translation-box" wx:if="{{showTranslation && article.translation}}">
                 <text>{{article.translation}}</text>

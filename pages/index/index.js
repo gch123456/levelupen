@@ -63,7 +63,7 @@ Page({
         this.setData({ viewState: 'loading' });
         const result = await cloud.database
             .from('articles')
-            .select('id, topic, level, title, title_cn, word_count, created_at')
+            .select('id, topic, level, title, title_cn, word_count, audio, created_at')
             .eq('level', this.data.currentLevel)
             .order('created_at', { ascending: false })
             .limit(30);

@@ -23,10 +23,6 @@
                 <text class="stat-num">{{wordCount}}</text>
                 <text class="stat-label">生词</text>
             </view>
-            <view class="stat">
-                <text class="stat-num">{{speakingCount}}</text>
-                <text class="stat-label">口语练习</text>
-            </view>
         </view>
 
         <button class="primary-button signout" bindtap="signOut">退出登录</button>

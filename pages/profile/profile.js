@@ -5,9 +5,7 @@ Page({
     data: {
         authState: 'checking',
         user: null,
-        articleCount: 0,
         wordCount: 0,
-        speakingCount: 0,
     },
 
     onShow() {
@@ -36,12 +34,8 @@ Page({
         const wordResult = await cloud.database
             .from('words')
             .select('id', { count: 'exact', head: true });
-        const speakingResult = await cloud.database
-            .from('speaking_sessions')
-            .select('id', { count: 'exact', head: true });
         this.setData({
             wordCount: wordResult.count || 0,
-            speakingCount: speakingResult.count || 0,
         });
     },
 

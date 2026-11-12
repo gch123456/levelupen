@@ -90,9 +90,15 @@
 
 .article-foot {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 20rpx;
     color: #8a94a6;
     font-size: 22rpx;
+}
+
+.article-audio {
+    color: #1769e0;
 }
 
 .state-card-error {

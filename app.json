@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/article/article",
     "pages/words/words",
-    "pages/speaking/speaking",
     "pages/profile/profile"
   ],
   "window": {
@@ -30,12 +29,6 @@
         "text": "生词本",
         "iconPath": "icons/star.png",
         "selectedIconPath": "icons/star-active.png"
-      },
-      {
-        "pagePath": "pages/speaking/speaking",
-        "text": "口语",
-        "iconPath": "icons/mic.png",
-        "selectedIconPath": "icons/mic-active.png"
       },
       {
         "pagePath": "pages/profile/profile",

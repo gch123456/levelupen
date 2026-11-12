@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "口语练习",
-  "usingComponents": {
-    "login-panel": "../../components/login-panel/login-panel"
-  }
-}
