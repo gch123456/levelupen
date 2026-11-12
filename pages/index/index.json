@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "分级阅读",
+  "usingComponents": {
+    "login-panel": "../../components/login-panel/login-panel"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/article/article",
+    "pages/words/words",
+    "pages/speaking/speaking",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarTitleText": "LevelUp英语",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f7fa",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#646a73",
+    "selectedColor": "#1769e0",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "阅读",
+        "iconPath": "icons/book.png",
+        "selectedIconPath": "icons/book-active.png"
+      },
+      {
+        "pagePath": "pages/words/words",
+        "text": "生词本",
+        "iconPath": "icons/star.png",
+        "selectedIconPath": "icons/star-active.png"
+      },
+      {
+        "pagePath": "pages/speaking/speaking",
+        "text": "口语",
+        "iconPath": "icons/mic.png",
+        "selectedIconPath": "icons/mic-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "icons/person.png",
+        "selectedIconPath": "icons/person-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

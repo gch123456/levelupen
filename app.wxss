@@ -1,0 +1,69 @@
+page {
+    min-height: 100%;
+    background: #f5f7fa;
+    color: #1f2329;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+button {
+    border-radius: 12rpx;
+}
+
+/* 通用卡片 */
+.card {
+    box-sizing: border-box;
+    padding: 36rpx;
+    border: 2rpx solid #e5e8eb;
+    border-radius: 24rpx;
+    background: #ffffff;
+}
+
+/* 通用主按钮 */
+.primary-button {
+    margin-top: 28rpx;
+    background: #1769e0;
+    color: #ffffff;
+    font-size: 28rpx;
+}
+
+/* 通用加载/空态/错误态 */
+.state-card {
+    display: flex;
+    min-height: 320rpx;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 36rpx;
+    border: 2rpx solid #e5e8eb;
+    border-radius: 24rpx;
+    background: #ffffff;
+}
+
+.spinner {
+    width: 44rpx;
+    height: 44rpx;
+    border: 6rpx solid #dbe8fb;
+    border-top-color: #1769e0;
+    border-radius: 50%;
+}
+
+.state-icon {
+    color: #1769e0;
+    font-size: 56rpx;
+    font-weight: 700;
+}
+
+.state-title {
+    margin-top: 20rpx;
+    font-size: 34rpx;
+    font-weight: 600;
+}
+
+.state-description {
+    margin-top: 12rpx;
+    color: #646a73;
+    font-size: 26rpx;
+    line-height: 1.6;
+}

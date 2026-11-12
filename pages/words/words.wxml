@@ -1,0 +1,41 @@
+<view class="page">
+    <view class="state-card" wx:if="{{authState === 'checking'}}">
+        <view class="spinner"></view>
+        <text class="state-title">正在检查登录</text>
+    </view>
+
+    <view class="login-wrap" wx:elif="{{authState === 'signed-out'}}">
+        <text class="page-hint">登录后同步你的生词本</text>
+        <login-panel bind:signedin="onSignedIn" />
+    </view>
+
+    <block wx:else>
+        <view class="state-card" wx:if="{{viewState === 'loading'}}">
+            <view class="spinner"></view>
+            <text class="state-title">正在加载</text>
+        </view>
+
+        <view class="state-card" wx:elif="{{viewState === 'empty'}}">
+            <text class="state-icon">○</text>
+            <text class="state-title">生词本还是空的</text>
+            <text class="state-description">去阅读文章，点一点不认识的单词吧。</text>
+        </view>
+
+        <view class="state-card state-card-error" wx:elif="{{viewState === 'error'}}">
+            <text class="state-icon">!</text>
+            <text class="state-title">加载失败</text>
+            <button class="primary-button" bindtap="loadWords">重新加载</button>
+        </view>
+
+        <block wx:else>
+            <view wx:for="{{words}}" wx:key="id" class="card word-card">
+                <view class="word-head">
+                    <text class="word-text">{{item.word}}</text>
+                    <text class="word-remove" data-id="{{item.id}}" bindtap="removeWord">删除</text>
+                </view>
+                <text class="word-definition" wx:if="{{item.definition}}">{{item.definition}}</text>
+                <text class="word-source" wx:if="{{item.source_title}}">来自：{{item.source_title}}</text>
+            </view>
+        </block>
+    </block>
+</view>

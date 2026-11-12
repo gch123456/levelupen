@@ -1,0 +1,56 @@
+<view class="page">
+    <view class="state-card" wx:if="{{viewState === 'loading'}}">
+        <view class="spinner"></view>
+        <text class="state-title">正在加载</text>
+    </view>
+
+    <view class="state-card state-card-error" wx:elif="{{viewState === 'error'}}">
+        <text class="state-icon">!</text>
+        <text class="state-title">文章加载失败</text>
+        <button class="primary-button" bindtap="loadArticle">重新加载</button>
+    </view>
+
+    <block wx:else>
+        <view class="card">
+            <view class="article-meta">
+                <text class="article-topic">{{article.topic}} · L{{article.level}}</text>
+                <text class="article-words">{{article.word_count}} 词</text>
+            </view>
+            <text class="article-title">{{article.title}}</text>
+            <text class="article-title-cn" wx:if="{{article.title_cn}}">{{article.title_cn}}</text>
+            <view class="translation-toggle" bindtap="toggleTranslation">
+                {{showTranslation ? '隐藏全文翻译' : '显示全文翻译'}}
+            </view>
+            <view class="translation-box" wx:if="{{showTranslation && article.translation}}">
+                <text>{{article.translation}}</text>
+            </view>
+        </view>
+
+        <view class="card reading-card">
+            <text class="reading-hint">点击单词查看释义</text>
+            <view class="reading-body">
+                <block wx:for="{{tokens}}" wx:key="i">
+                    <text wx:if="{{item.kind === 'word'}}" class="tok-word" data-word="{{item.word}}" catchtap="onWordTap">{{item.text}}</text>
+                    <text wx:elif="{{item.kind === 'space'}}"> </text>
+                    <text wx:else class="tok-punct">{{item.text}}</text>
+                </block>
+            </view>
+        </view>
+    </block>
+
+    <view class="popup-mask" wx:if="{{wordPopup}}" bindtap="closePopup">
+        <view class="popup" catchtap="stopBubble">
+            <text class="popup-word">{{wordPopup.word}}</text>
+            <view class="popup-loading" wx:if="{{wordPopup.loading}}">
+                <view class="spinner"></view>
+            </view>
+            <text class="popup-meaning" wx:else>{{wordPopup.meaning}}</text>
+            <button
+                class="primary-button popup-save"
+                loading="{{savingWord}}"
+                disabled="{{savingWord || wordPopup.loading}}"
+                bindtap="saveWord"
+            >加入生词本</button>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,70 @@
+<view class="page">
+    <view class="state-card" wx:if="{{authState === 'checking'}}">
+        <view class="spinner"></view>
+        <text class="state-title">正在检查登录</text>
+    </view>
+
+    <view class="login-wrap" wx:elif="{{authState === 'signed-out'}}">
+        <text class="page-hint">登录后开始口语练习</text>
+        <login-panel bind:signedin="onSignedIn" />
+    </view>
+
+    <block wx:elif="{{!activeScenario}}">
+        <view class="hero">
+            <text class="eyebrow">SPEAKING PRACTICE</text>
+            <text class="title">口语情景对话</text>
+            <text class="subtitle">选一个场景，和 AI 用英语聊起来</text>
+        </view>
+        <view
+            wx:for="{{scenarios}}"
+            wx:key="key"
+            class="card scenario-card"
+            data-key="{{item.key}}"
+            bindtap="pickScenario"
+        >
+            <text class="scenario-label">{{item.label}}</text>
+            <text class="scenario-arrow">→</text>
+        </view>
+    </block>
+
+    <block wx:else>
+        <view class="chat-header">
+            <text class="chat-scenario">{{activeScenario.label}}</text>
+            <view class="chat-exit" bindtap="exitScenario">退出</view>
+        </view>
+
+        <view class="chat-body">
+            <view wx:for="{{messages}}" wx:key="i" class="msg msg-{{item.role}}">
+                <view class="bubble bubble-{{item.role}}">
+                    <text>{{item.content}}</text>
+                </view>
+                <block wx:if="{{item.role === 'assistant' && item.content}}">
+                    <view class="follow-read" data-index="{{index}}" bindtap="onRecordTap">
+                        {{recording ? '⏹ 结束跟读' : '🎤 跟读'}}
+                    </view>
+                    <view class="review-box" wx:if="{{item.reviewing}}">
+                        <view class="spinner spinner-small"></view>
+                        <text class="review-text">AI 点评生成中…</text>
+                    </view>
+                    <view class="review-box" wx:elif="{{item.review}}">
+                        <text class="review-text">💬 {{item.review}}</text>
+                    </view>
+                </block>
+            </view>
+        </view>
+
+        <view class="chat-input-bar">
+            <input
+                class="chat-input"
+                placeholder="Type in English…"
+                placeholder-class="chat-placeholder"
+                value="{{inputText}}"
+                bindinput="onInput"
+                bindconfirm="send"
+                confirm-type="send"
+            />
+            <view class="chat-send {{sending ? 'chat-send-disabled' : ''}}" bindtap="send">发送</view>
+        </view>
+        <text class="record-hint">{{recording ? '正在录音，再点一次结束' : ''}}</text>
+    </block>
+</view>

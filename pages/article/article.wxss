@@ -1,0 +1,132 @@
+.page {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 32rpx 32rpx 64rpx;
+}
+
+.state-card-error {
+    border-color: #ffd8d6;
+}
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.article-topic {
+    color: #1769e0;
+    font-size: 24rpx;
+    font-weight: 600;
+}
+
+.article-words {
+    color: #8a94a6;
+    font-size: 24rpx;
+}
+
+.article-title {
+    display: block;
+    margin-top: 16rpx;
+    font-size: 36rpx;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.article-title-cn {
+    display: block;
+    margin-top: 10rpx;
+    color: #646a73;
+    font-size: 28rpx;
+}
+
+.translation-toggle {
+    display: inline-block;
+    margin-top: 24rpx;
+    padding: 10rpx 24rpx;
+    font-size: 24rpx;
+    color: #1769e0;
+    background: #eaf2ff;
+    border-radius: 999rpx;
+}
+
+.translation-box {
+    margin-top: 20rpx;
+    padding: 24rpx;
+    font-size: 26rpx;
+    line-height: 1.7;
+    color: #41464f;
+    background: #f8f9fb;
+    border-radius: 16rpx;
+}
+
+.reading-card {
+    margin-top: 24rpx;
+}
+
+.reading-hint {
+    display: block;
+    color: #8a94a6;
+    font-size: 24rpx;
+}
+
+.reading-body {
+    margin-top: 20rpx;
+    font-size: 32rpx;
+    line-height: 2;
+}
+
+.tok-word {
+    color: #1f2329;
+    border-bottom: 4rpx solid #dbe8fb;
+}
+
+.tok-punct {
+    color: #1f2329;
+}
+
+.popup-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 19, 26, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.popup {
+    box-sizing: border-box;
+    width: 600rpx;
+    padding: 40rpx 36rpx;
+    background: #ffffff;
+    border-radius: 28rpx;
+}
+
+.popup-word {
+    display: block;
+    font-size: 40rpx;
+    font-weight: 700;
+    color: #1769e0;
+}
+
+.popup-loading {
+    display: flex;
+    margin-top: 32rpx;
+    justify-content: center;
+}
+
+.popup-meaning {
+    display: block;
+    margin-top: 20rpx;
+    font-size: 28rpx;
+    line-height: 1.7;
+    color: #1f2329;
+}
+
+.popup-save {
+    width: 100%;
+}

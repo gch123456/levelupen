@@ -1,0 +1,58 @@
+.page {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 32rpx 32rpx 64rpx;
+}
+
+.state-card-error {
+    border-color: #ffd8d6;
+}
+
+.login-wrap {
+    margin-top: 120rpx;
+}
+
+.page-hint {
+    display: block;
+    margin-bottom: 24rpx;
+    color: #646a73;
+    font-size: 28rpx;
+    text-align: center;
+}
+
+.word-card {
+    margin-bottom: 24rpx;
+}
+
+.word-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.word-text {
+    font-size: 34rpx;
+    font-weight: 700;
+    color: #1769e0;
+}
+
+.word-remove {
+    color: #8a94a6;
+    font-size: 24rpx;
+    padding: 8rpx 16rpx;
+}
+
+.word-definition {
+    display: block;
+    margin-top: 14rpx;
+    font-size: 27rpx;
+    line-height: 1.7;
+    color: #1f2329;
+}
+
+.word-source {
+    display: block;
+    margin-top: 14rpx;
+    color: #8a94a6;
+    font-size: 22rpx;
+}

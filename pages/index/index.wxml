@@ -1,0 +1,80 @@
+<view class="page">
+    <view class="hero">
+        <text class="eyebrow">DAILY GRADED READING</text>
+        <text class="title">分级阅读</text>
+        <text class="subtitle">每天 3 分钟，读新闻学英语</text>
+    </view>
+
+    <view class="level-bar">
+        <view
+            wx:for="{{levels}}"
+            wx:key="key"
+            class="level-pill {{currentLevel === item.key ? 'level-pill-active' : ''}}"
+            data-level="{{item.key}}"
+            bindtap="switchLevel"
+        >{{item.label}}</view>
+    </view>
+
+    <view class="state-card" wx:if="{{viewState === 'loading'}}">
+        <view class="spinner"></view>
+        <text class="state-title">正在加载</text>
+    </view>
+
+    <view class="state-card" wx:elif="{{viewState === 'empty'}}">
+        <text class="state-icon">○</text>
+        <text class="state-title">这个等级还没有文章</text>
+        <text class="state-description">登录后可以让 AI 为你生成第一篇。</text>
+    </view>
+
+    <view class="state-card state-card-error" wx:elif="{{viewState === 'error'}}">
+        <text class="state-icon">!</text>
+        <text class="state-title">加载失败</text>
+        <button class="primary-button" bindtap="loadArticles">重新加载</button>
+    </view>
+
+    <block wx:else>
+        <view
+            wx:for="{{articles}}"
+            wx:key="id"
+            class="card article-card"
+            data-id="{{item.id}}"
+            bindtap="openArticle"
+        >
+            <view class="article-meta">
+                <text class="article-topic">{{item.topic}}</text>
+                <text class="article-level">L{{item.level}}</text>
+            </view>
+            <text class="article-title">{{item.title}}</text>
+            <text class="article-title-cn" wx:if="{{item.title_cn}}">{{item.title_cn}}</text>
+            <view class="article-foot">
+                <text>{{item.word_count}} 词</text>
+            </view>
+        </view>
+    </block>
+
+    <view class="card gen-panel" wx:if="{{authState === 'signed-in'}}">
+        <text class="gen-title">AI 生成新文章</text>
+        <view class="gen-topics">
+            <view
+                wx:for="{{topics}}"
+                wx:key="*this"
+                class="topic-chip"
+                data-topic="{{item}}"
+                bindtap="pickTopic"
+            >{{item}}</view>
+        </view>
+        <input
+            class="gen-input"
+            placeholder="或输入自定义话题"
+            placeholder-class="gen-placeholder"
+            value="{{topicInput}}"
+            bindinput="onTopicInput"
+        />
+        <button
+            class="primary-button"
+            loading="{{generating}}"
+            disabled="{{generating}}"
+            bindtap="generateArticle"
+        >{{generating ? 'AI 正在写作…' : '生成文章'}}</button>
+    </view>
+</view>
